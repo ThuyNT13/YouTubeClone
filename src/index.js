@@ -14,33 +14,36 @@ const API_KEY = 'AIzaSyAbtaZAXenD9i9JQnbIuUEtCEKKho2yy_k';
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-          videos: [],
-          selectedVideo: null
-        };
-
-        YTSearch({key: API_KEY, term: 'snowmonkey'}, (videos) => {
-            //   this.setState({ videos: videos }); // when key prop are same
-            this.setState({
-              videos: videos,
-              selectedVideo: videos[2]
-            });
-            // console.log(videos);
-        });
+    this.state = {
+      videos: [],
+      selectedVideo: null
     };
 
-    render() {
-        return (
-            <div>
-                <SearchBar />
-                <VideoDetails video={this.state.selectedVideo}/>
-                <VideoList videos={this.state.videos} />
-            </div>
-        );
-    }
+    YTSearch({key: API_KEY, term: 'snowmonkey'}, (videos) => {
+      //   this.setState({ videos: videos }); // when key prop are same
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[2]
+      });
+      // console.log(videos);
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <SearchBar />
+        <VideoDetails
+          video={this.state.selectedVideo} />
+        <VideoList
+          onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
+          videos={this.state.videos} />
+      </div>
+    );
+  }
 }
 // take instance of component's generated HTML
 // put into DOM (add to page)
