@@ -22,20 +22,24 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'snowmonkey'}, (videos) => {
-      //   this.setState({ videos: videos }); // when key prop are same
+    this.videoSearch('snowmonkey');
+  };
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
+      //   this.setState({ videos }); // when key prop are same
       this.setState({
         videos: videos,
-        selectedVideo: videos[2]
+        selectedVideo: videos[0]
       });
       // console.log(videos);
     });
-  };
+  }
 
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
         <VideoDetails
           video={this.state.selectedVideo} />
         <VideoList
