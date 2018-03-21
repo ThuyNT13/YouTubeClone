@@ -2,22 +2,22 @@ import React, { Component} from 'react';
 
 // class-based component
 class SearchBar extends Component {
-    
+
     constructor(props) {
         super(props);
 
-        this.state = {presentState: ''};
+        this.state = {term: ''};
     }
 
     render() {
-        return ( 
+        return (
             <div>
-                <input 
+                <input
                     // controlled component - where input receives its value from state
-                    value={this.state.presentState}
-                    onChange={event => this.setState({ presentState: event.target.value })} 
+                    value={this.state.term}
+                    onChange={event => this.setState({ term: event.target.value })}
                 />
-                {/* <p>Value of state: {this.state.presentState}</p> */}
+                {/* <p>Value of is.state.term}</p> */}
             </div>
         );
     }
